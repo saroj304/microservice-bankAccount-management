@@ -1,18 +1,17 @@
-
 spring:
   application:
     name: accounts
-  h2:
-    console.enabled: true
+
   datasource:
-    url: jdbc:h2:mem:test
-    driverClassName: org.h2.Driver
-    username: sa
-    password: ''
-    jpa:
-      spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
+    url: jdbc:mysql://localhost:3306/bank_account_management
+    username: root
+    password: password
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: create
+    properties:
       hibernate:
-        ddl-auto: update
-      show-sql: true
-server:
+        dialect: org.hibernate.dialect.MySQLDialect
   port: 8080

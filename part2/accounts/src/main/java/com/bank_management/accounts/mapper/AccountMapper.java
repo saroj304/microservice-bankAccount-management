@@ -6,14 +6,14 @@ import com.bank_management.accounts.entity.Accounts;
 public class AccountMapper {
 
 
-    public Accounts toAccountEntity(AccountsDto accountsDto, Accounts accounts) {
+    public static Accounts toAccountEntity(AccountsDto accountsDto, Accounts accounts) {
         accounts.setAccountNumber(accountsDto.getAccountNumber());
         accounts.setAccountType(accountsDto.getAccountType());
         accounts.setBranchAddress(accountsDto.getBranchAddress());
         return accounts;
     }
 
-    public AccountsDto toAccountDto(Accounts accounts, AccountsDto accountsDto) {
+    public static AccountsDto toAccountDto(Accounts accounts, AccountsDto accountsDto) {
 
         accountsDto.setAccountNumber(accounts.getAccountNumber());
         accountsDto.setAccountType(accounts.getAccountType());
