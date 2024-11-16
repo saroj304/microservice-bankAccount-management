@@ -1,9 +1,9 @@
 package com.bank_management.accounts.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.springframework.http.HttpStatus;
 
 import java.time.LocalDateTime;
@@ -11,10 +11,25 @@ import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 @Builder
+@Schema(
+        name = "error response",
+        description = "schema to hold the error response "
+)
 public class ErrorResponseDto {
-    //path for which error occured
+    @Schema(
+            description = "path on which the error has occured", example = "api/user/createAccount"
+    )
     private String apiPath;
+    @Schema(
+            description = "error code ", example = "500"
+    )
     private HttpStatus errorCode;
+    @Schema(
+            description = "error Message", example = "Internal Server Error"
+    )
     private String errorMessage;
+    @Schema(
+            description = "time stamp of the error"
+    )
     private LocalDateTime errorDateTime;
 }

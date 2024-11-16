@@ -94,6 +94,7 @@ public class AccountServiceImpl implements IAccountService {
 
     @Override
     public boolean deleteAccount(String mobileNumber) {
+        boolean isDeleted=false;
         if (!mobileNumber.isBlank()) {
             Optional<Customer> customer = customerRepository.findCustomerByMobileNumber(mobileNumber);
             if (!customer.isPresent()) {
@@ -107,6 +108,6 @@ public class AccountServiceImpl implements IAccountService {
             accountRepository.deleteById(accounts.get().getAccountNumber());
           return true;
         }
-        return false;
+        return isDeleted;
     }
 }
