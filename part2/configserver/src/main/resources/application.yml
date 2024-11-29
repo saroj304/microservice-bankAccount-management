@@ -7,6 +7,7 @@ spring:
      config:
        server:
          native:
-           search-locations: "classpath:/config"
+           search-locations: "file:///home/webguardianx/Documents/Project/Java/JAVA_WORKSPACE/microservices/Documents/Config"
+#           search-locations: "classpath:/config"
 server:
   port: 8071
