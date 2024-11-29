@@ -1,17 +1,24 @@
 spring:
   application:
-    name: accounts
+    name: "accounts"
+  profiles:
+    active: "qa"
+  config:
+    import: "optional:configserver:http://localhost:8071"
+
 
   datasource:
-    url: jdbc:mysql://localhost:3306/bank_account_management
-    username: root
-    password: password
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT:3306}/bank_account_management
+    username: ${MYSQL_USERNAME:root}
+    password: ${MYSQL_PASSWORD:password}
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.MySQLDialect
-  port: 8080
+        dialect: org.hibernate.dialect.MySQL8Dialect
+
+server:
+  port: 8081

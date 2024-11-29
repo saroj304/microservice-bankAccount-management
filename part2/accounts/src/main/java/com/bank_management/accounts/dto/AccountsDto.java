@@ -1,8 +1,7 @@
 package com.bank_management.accounts.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.*;
 import lombok.Data;
 
 @Data
@@ -11,12 +10,10 @@ import lombok.Data;
         description = "holds the customer account information"
 )
 public class AccountsDto {
-    @NotEmpty(message = "account number cannot be null or empty")
-    @Pattern(regexp = "^\\d{10}$")
-    @Schema(
-
-            description = "accountNumber of the customer!!"
-    )
+    @NotNull(message = "Account number cannot be null")
+    @Min(value = 1000000000, message = "Account number must be at least 10 digits")
+    @Max(value = 9999999999L, message = "Account number must be at most 10 digits")
+    @Schema(description = "Account number of the customer")
     private long accountNumber;
     @NotEmpty(message = "branchAddress cannot be null or empty!!")
     @Schema(

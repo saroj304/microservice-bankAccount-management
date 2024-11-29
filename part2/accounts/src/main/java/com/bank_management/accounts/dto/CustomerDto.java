@@ -1,6 +1,7 @@
 package com.bank_management.accounts.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
@@ -34,6 +35,7 @@ public class CustomerDto {
             description = "mobile number of the customer", example = "9863628276"
     )
     private String mobileNumber;
+    @Valid
     @Schema(
             description = "holds the account info of the customer"
     )

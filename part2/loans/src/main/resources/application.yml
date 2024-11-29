@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: loans
+  profiles:
+    active: "prod"
+  config:
+    import: "optional:configserver:http://localhost:8071"
+  datasource:
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT:3306}/bank_account_management
+    username: root
+    password: password
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+server:
+  port: 8090

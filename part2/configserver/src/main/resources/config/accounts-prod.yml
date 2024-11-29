@@ -1,0 +1,12 @@
+
+build:
+  version: "2.0"
+
+accounts:
+  message: "welcome to bankAccountManagement accounts related prod APIs"
+  contactDetails:
+    name : "saroj khatiwada"
+    email : "sarojkhatiwada1999@gmail.com"
+  onCallSupport:
+    -9810844839
+    -0238547492
