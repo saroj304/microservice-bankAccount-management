@@ -6,7 +6,7 @@ spring:
   config:
     import: "optional:configserver:http://localhost:8071"
   datasource:
-    url: jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT:3306}/bank_account_management
+    url: jdbc:mysql://${SPRING_MYSQL_HOST:localhost}:${SPRING_MYSQL_PORT:3307}/loansdb
     username: root
     password: password
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -16,6 +16,13 @@ spring:
       ddl-auto: update
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.MySQLDialect
+        dialect: org.hibernate.dialect.MySQL8Dialect
+    show-sql: true
 server:
   port: 8090
+
+management:
+  endpoint:
+    web:
+      exposure:
+        include: "*"

@@ -1,13 +1,47 @@
 spring:
-   application:
-      name : "configserver"
-   profiles:
-     active: native
-   cloud:
-     config:
-       server:
-         native:
-           search-locations: "file:///home/webguardianx/Documents/Project/Java/JAVA_WORKSPACE/microservices/Documents/Config"
-#           search-locations: "classpath:/config"
+  application:
+    name: "configserver"
+  profiles:
+    #     native for filesystem and microservice server config
+    #     active: native
+    active: git
+  cloud:
+    config:
+      server:
+        #         native:
+        #           search-locations: "file:///home/webguardianx/Documents/Project/Java/JAVA_WORKSPACE/microservices/Documents/Config"
+        #           search-locations: "classpath:/config"
+
+        git:
+          uri: "https://github.com/saroj304/bank_account_management_serverConfig.git"
+          default-label: master
+          timeout: 5
+          #          clone the github repo to  a local machine on config server start
+          clone-on-start: true
+          #          pull from github at each start so that local machine contain updated config
+          force-pull: true
+          username: "sarojkhatiwada41"
+#          password: ""
+
 server:
   port: 8071
+
+#call /encrypt endpoint if you want to encrypt any attributes eg email or user name or password
+encrypt:
+  key: "CSsOjrQxo+bjKhHVtgPgUcGr8sktMTTZusX5L8yVHXM="
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  health:
+    readinessstate:
+      enabled: true
+    livenessstate:
+      enabled: true
+  endpoint:
+    health:
+      probes:
+        enabled: true
+
