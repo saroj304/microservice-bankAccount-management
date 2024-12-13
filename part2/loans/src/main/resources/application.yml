@@ -5,24 +5,55 @@ spring:
     active: "prod"
   config:
     import: "optional:configserver:http://localhost:8071"
-  datasource:
-    url: jdbc:mysql://${SPRING_MYSQL_HOST:localhost}:${SPRING_MYSQL_PORT:3307}/loansdb
-    username: root
-    password: password
-    driver-class-name: com.mysql.cj.jdbc.Driver
-
-  jpa:
-    hibernate:
-      ddl-auto: update
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.MySQL8Dialect
-    show-sql: true
+#  datasource:
+#    url: jdbc:mysql://${SPRING_MYSQL_HOST:localhost}:${SPRING_MYSQL_PORT:3307}/loansdb
+#    username: root
+#    password: password
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#
+#  jpa:
+#    hibernate:
+#      ddl-auto: update
+#    properties:
+#      hibernate:
+#        dialect: org.hibernate.dialect.MySQL8Dialect
+#    show-sql: true
 server:
   port: 8090
-
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driverClassName: org.h2.Driver
+    username: sa
+    password: ''
+    h2:
+      console:
+        enabled: true
 management:
-  endpoint:
+  endpoints:
     web:
       exposure:
         include: "*"
+  info:
+    env:
+      enabled: true
+  endpoint:
+    shutdown:
+      enabled: true
+endpoints:
+  shutdown:
+    enabled: true
+
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://localhost:8070/eureka/
+info:
+  app:
+    name: "cards"
+    description: "Bank_Account_Management loans Application"
+    version: "1.0.0"

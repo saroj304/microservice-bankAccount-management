@@ -4,6 +4,8 @@
     <file url="file://$PROJECT_DIR$/part2/accounts/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/part2/cards/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/part2/configserver/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/part2/eurekaserver/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/part2/gatewayserver/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/part2/loans/src/main/java" charset="UTF-8" />
   </component>
 </project>

@@ -21,7 +21,7 @@ spring:
           #          pull from github at each start so that local machine contain updated config
           force-pull: true
           username: "sarojkhatiwada41"
-#          password: ""
+          password: ""
 
 server:
   port: 8071

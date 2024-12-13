@@ -3,22 +3,6 @@ services:
     networks:
       - bank_account_management
 
-  microservice_db_config:
-     extends:
-       service: network-deploy-service
-     image: mysql
-     depends_on:
-       configserver:
-         condition: service_healthy
-     environment:
-       MYSQL_ROOT_USERNAME: root
-       MYSQL_ROOT_PASSWORD: password
-     healthcheck:
-       test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
-       interval: 10s
-       timeout: 5s
-       retries: 5
-
   microservice-base-config:
     extends:
       service: network-deploy-service
@@ -32,10 +16,18 @@ services:
   microservice-configserver-config:
     extends:
       service: microservice-base-config
+    depends_on:
+      configserver:
+        condition: service_healthy
     environment:
-      SPRING_PROFILES_ACTIVE: prod
+      SPRING_PROFILES_ACTIVE: default
       SPRING_CONFIG_IMPORT: configserver:http://configserver:8071/
-      SPRING_MYSQL_HOST: mysql
-      SPRING_DATASOURCE_USER: root
-      SPRING_DATASOURCE_PASSWORD: password
 
+  microservice-eureka-config:
+    extends:
+      service: microservice-configserver-config
+    depends_on:
+      eurekaserver:
+        condition: service_healthy
+    environment:
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eurekaserver:8070/eureka/
